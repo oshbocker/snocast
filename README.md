@@ -3,6 +3,7 @@ This repo contains code to download data and train a model to predict snow water
 
 
 ## Directory Structure
+```
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
 │   ├── external       <- Data from third party sources.
@@ -45,3 +46,4 @@ This repo contains code to download data and train a model to predict snow water
 │       └── visualize.py
 │
 └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+```
