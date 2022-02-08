@@ -1,49 +1,38 @@
 # Snocast
 This repo contains code to download data and train a model to predict snow water equivalent (SWE) values for 1 km^2 grids in the Western United States. It also contains code to use the trained model to make near real-time predictions for SWE.
 
+This code is designed to run using Google Colab with Google Drive as a backend for storing data.
+
 
 ## Directory Structure
 ```
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+├── README.md                     <- The top-level README for developers using this project.
+├── requirements.txt              <- The requirements file for reproducing the analysis environment, e.g.
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.py           <- Make this project pip installable with `pip install -e`
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+├── train                         <- Code to acquire train data and train snocast model
+│   ├── get_water_bodies.ipynb
+│   ├── get_elevation.ipynb
 │   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+│   ├── data                      <- Scripts to download or generate data
+│   │   ├── hrrr                  <- NOAA HRRR Climate data
+│   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
+│   │   └── static                <- Data sources that don't have a time element
+│   └──  models                   <- Trained model outputs
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+├── eval                          <- Code to acquire near real-time data and run predictions for snocast model
+│   ├── get_water_bodies_eval.ipynb
+│   ├── get_elevation_eval.ipynb
+│   ├── get_lccs_eval.ipynb
+│   ├── get_ground_measures_eval.ipynb
+│   ├── get_modis_eval.ipynb
+│   ├── get_climate_eval.ipynb
+│   ├── snocast_model_predict.ipynb
+│   │
+│   ├── data                      <- Scripts to download or generate data
+│   │   ├── ground_measures       <- Weekly Ground Measurments from SNOTEL and CDEC
+│   │   ├── hrrr                  <- NOAA HRRR Climate data
+│   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
+│   │   └── static                <- Data sources that don't have a time element
+│   ├──  models                   <- Trained model outputs
+│   └──  models                   <- Submission outputs
 ```
