@@ -13,11 +13,10 @@ This code is designed to run using Google Colab with Google Drive as a backend f
 │   ├── get_water_bodies.ipynb
 │   ├── get_elevation.ipynb
 │   │
-│   ├── data                      <- Scripts to download or generate data
-│   │   ├── hrrr                  <- NOAA HRRR Climate data
-│   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
-│   │   └── static                <- Data sources that don't have a time element
-│   └──  models                   <- Trained model outputs
+│   └── data                      <- Scripts to download or generate data
+│       ├── hrrr                  <- NOAA HRRR Climate data
+│       ├── modis                 <- Modis Terra and Aqua snow cover data outputs
+│       └── static                <- Data sources that don't have a time element
 │
 ├── eval                          <- Code to acquire near real-time data and run predictions for snocast model
 │   ├── get_water_bodies_eval.ipynb
@@ -34,5 +33,5 @@ This code is designed to run using Google Colab with Google Drive as a backend f
 │   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
 │   │   └── static                <- Data sources that don't have a time element
 │   ├──  models                   <- Trained model outputs
-│   └──  models                   <- Submission outputs
+│   └──  submissions                   <- Submission outputs
 ```
