@@ -42,4 +42,4 @@ This code is designed to run using Google Colab with Google Drive as a backend f
 ## Prediction (Eval) Instructions
 First, run the `get_ground_measures_eval.ipynb` notebook which will pull the latest `ground_measures_features.csv` file from the `drivendata-public-assets` AWS S3 bucket and store it in the `eval/data/ground_measures` directory.
 
-Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_date` variable to the current date to submit predictions for in `%Y-%m-%d` format. Then run the notebook to generate the climate data which will be save to the `eval/data/hrrr` directory with the following format `climate_{run_date}.parquet`.
+Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_date` variable to the current date for submitting predictions. `run_date` should be a string with `%Y-%m-%d` date format. Then run the notebook to generate the climate data which will be save to the `eval/data/hrrr` directory with the following format `climate_{run_date}.parquet`.
