@@ -75,16 +75,20 @@ Note: when training the data all the sources are technically static since we are
 
 ### Acquire Static Data for Train
 Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
-* get_water_bodies_train_test.ipynb (requires AWS access key)
-* get_lccs_train_test.ipynb (requires AWS access key)
-* get_lccs_gm.ipynb (requires AWS access key)
-* get_elevation_train_test.ipynb
-* get_elevation_gradient_all.ipynb
+* `get_water_bodies_train_test.ipynb` (requires AWS access key)
+* `get_lccs_train_test.ipynb` (requires AWS access key)
+* `get_lccs_gm.ipynb` (requires AWS access key)
+* `get_elevation_train_test.ipynb`
+* `get_elevation_gradient_all.ipynb`
 
 ### Acquire Modis Data for Train
-Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). This notebook takes a very long time to run and occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
+Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). Since this notebook pulls data for each date in the train, test, and gm datasets, and the 15 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/1091020/153730313-43d3a41e-8374-464a-9a58-90328d5c595c.png">
 
+### Acquire NOAA HRRR Climate Data for Train
+Run the `get_climate_all.ipynb` notebook. Since this notebook pulls data for each date in the train, test, and gm datasets, and the 3 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the HRRR data storage locations will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
+
+### Train the Model on the Acquired Data
 
 ## Prediction (Eval) Instructions
 First, run the `get_ground_measures_eval.ipynb` notebook which will pull the latest `ground_measures_features.csv` file from the `drivendata-public-assets` AWS S3 bucket and store it in the `eval/data/ground_measures` directory.
