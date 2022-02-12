@@ -3,7 +3,7 @@ This repo contains code to download data and train a model to predict snow water
 
 This code is designed to run using Google Colab with Google Drive as a backend for storing data. The Google Colab notebooks in this repo assume that the directory structure below stems from a root of `/content/drive/MyDrive/snocast` and files are accessed from a Google Colab notebook after the google drive has been mounted.
 
-```
+```python
 from google.colab import drive
 drive.mount('/content/drive')
 ```
