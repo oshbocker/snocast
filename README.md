@@ -15,8 +15,14 @@ drive.mount('/content/drive')
 ├── requirements.txt              <- The requirements file for reproducing the analysis environment, e.g.
 │
 ├── train                         <- Code to acquire train data and train snocast model
-│   ├── get_water_bodies.ipynb
-│   ├── get_elevation.ipynb
+│   ├── get_water_bodies_train_test.ipynb
+│   ├── get_elevation_train_test.ipynb
+│   ├── get_elevation_gradient_all.ipynb
+│   ├── get_lccs_train_test.ipynb
+│   ├── get_lccs_gm.ipynb
+│   ├── get_modis_all.ipynb
+│   ├── get_climate_all.ipynb
+│   ├── train_model.ipynb
 │   │
 │   ├── data                      <- Scripts to download or generate data
 │   │    ├── hrrr                 <- NOAA HRRR Climate data
@@ -54,7 +60,30 @@ In order to train the SWE prediction model a large quantity of historical data m
 * `ground_measures_train_features.csv`
 * `ground_measures_test_features.csv`
 * `ground_measures_metadata.csv`
+* `train_labels.csv`
+* `labels_2020_2021.csv`
+* `submission_format.csv`
 * `grid_cells.geojson`
+
+With the base files - listed above - in place we set about acquiring the data necessary to train the SWE prediction model. For the sake of prediction the data are separated into two main categories, static and time-sensitive. Static data sources do not vary between prediction windows and represent geographical features of the grid cell. The time-varying data sources capture SWE features that will vary for a particular grid cell throughout the snow season. The three time-varying data sources are:
+* Modis
+* NOAA HRRR Climate Data
+* Ground Measurements 
+
+We will start by pulling the static data sources.
+Note: when training the data all the sources are technically static since we are looking at historical measurements.
+
+### Acquire Static Data for Train
+Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
+* get_water_bodies_train_test.ipynb (requires AWS access key)
+* get_lccs_train_test.ipynb (requires AWS access key)
+* get_lccs_gm.ipynb (requires AWS access key)
+* get_elevation_train_test.ipynb
+* get_elevation_gradient_all.ipynb
+
+### Acquire Modis Data for Train
+Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). This notebook takes a very long time to run and occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
+<img width="445" alt="image" src="https://user-images.githubusercontent.com/1091020/153730313-43d3a41e-8374-464a-9a58-90328d5c595c.png">
 
 
 ## Prediction (Eval) Instructions
