@@ -77,23 +77,23 @@ Note: when training the data all the sources are technically static since we are
 Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
 * `get_water_bodies_train_test.ipynb` (requires AWS access key)
   * **Outputs:** 
-    * `data/static/train_water.parquet`
-    * `data/static/test_water.parquet`
+    * `train/data/static/train_water.parquet`
+    * `train/data/static/test_water.parquet`
 * `get_lccs_train_test.ipynb` (requires AWS access key)
   * **Outputs:** 
-    * `data/static/train_lccs.parquet`
-    * `data/static/test_lccs.parquet`
+    * `train/data/static/train_lccs.parquet`
+    * `train/data/static/test_lccs.parquet`
 * `get_lccs_gm.ipynb` (requires AWS access key)
   * **Outputs:** 
-    * `data/static/train_gm.parquet`
+    * `train/data/static/train_gm.parquet`
 * `get_elevation_train_test.ipynb`
   * **Outputs:** 
-    * `data/static/train_elevation.parquet`
-    * `data/static/test_elevation.parquet`
+    * `train/data/static/train_elevation.parquet`
+    * `train/data/static/test_elevation.parquet`
 * `get_elevation_gradient_all.ipynb`
   * **Outputs:** 
-    * `data/static/train_elevation_grads.parquet`
-    * `data/static/test_elevation_grads.parquet`
+    * `train/data/static/train_elevation_grads.parquet`
+    * `train/data/static/test_elevation_grads.parquet`
 
 ### Modis Data for Train
 Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). Since this notebook pulls data for each date in the train, test, and gm datasets, and the 15 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
@@ -133,6 +133,55 @@ This notebook will collate the data sources pulled in the previous steps, create
   * Used as part of prediction ensemble. 
 
 ## Prediction (Eval) Instructions
-First, run the `get_ground_measures_eval.ipynb` notebook which will pull the latest `ground_measures_features.csv` file from the `drivendata-public-assets` AWS S3 bucket and store it in the `eval/data/ground_measures` directory.
+We assume that the following files will be manually downloaded from the [DrivenData website](https://www.drivendata.org/competitions/86/competition-reclamation-snow-water-eval/data/) and placed in the `eval/data` directory.
+* `ground_measures_metadata.csv`
+* `submission_format.csv`
+* `grid_cells.geojson`
 
+Place the follwing files in the `eval/data/ground_measures` directory.
+* `ground_measures_train_features.csv`
+* `ground_measures_test_features.csv`
+
+With the base files - listed above - in place we use the notebooks with the `get_` prefix to acquire the remaining data necessary to use the SWE prediction model. Just like in the training scenario, we've broken the data into two main categories (1) static - which need to be run once - and (2) time-varying - which need to be run with every prediction.
+
+### Static Data for Eval
+Run the following notebooks in the `eval` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
+* `get_water_bodies_eval.ipynb` (requires AWS access key)
+  * **Outputs:** 
+    * `eval/data/static/grid_water.parquet`
+* `get_lccs_eval.ipynb` (requires AWS access key)
+  * **Outputs:** 
+    * `eval/data/static/grid_lccs.parquet`
+* `get_elevation_eval.ipynb`
+  * **Outputs:** 
+    * `eval/data/static/grid_cells_elev.parquet`
+* `get_elevation_gradient_eval.ipynb`
+  * **Outputs:** 
+    * `eval/data/static/test_elevation_grads.parquet`
+
+### Ground Measures for Eval
+Run the `get_ground_measures_eval.ipynb` notebook which will pull the latest `ground_measures_features.csv` file from the `drivendata-public-assets` AWS S3 bucket and store it in the `eval/data/ground_measures` directory.
+
+### Modis Data for Eval
+There are two options options for pulling Modis data from Google Earth Engine. The first option is the notebook `get_modis_eval.ipynb`. This notebook is similar to the way we pulled data in the Train scenario. Simply make sure the `run_date` variable is set to the current prediction date and execute all the cells in order. `run_date` should be a string with `%Y-%m-%d` date format. It takes about 4 hours to run. 
+
+However, the Google Earth Engine data for Modis Terra and Aqua typically lags 2.5 days behind. So we may find ourselves in a situation where we want to pull the most up-to-date Modis data but we only have a few hours before the submission deadline. In this case, we can use hte `get_modis_eval_parallel.ipynb` notebook which can speed up the Modis data acquisition 5x by running data pull jobs in parallel. This notebook relies on the `modis_parallel.py` file and also assumes that you have set up a [Google service account](https://developers.google.com/earth-engine/guides/service_account) with access to Earth Engine and pulled down the credentials file into your notebook (for automatic authentication).
+
+**Outputs:** 
+* Modis Data for Prediction `run_date`
+  * `eval/data/modis/modis_terra_{run_date}.parquet`
+  * `eval/data/modis/modis_aqua_{run_date}.parquet`
+
+### NOAA HRRR Climate Data for Train
 Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_date` variable to the current date for submitting predictions. `run_date` should be a string with `%Y-%m-%d` date format. Then run the notebook to generate the climate data which will be save to the `eval/data/hrrr` directory with the following format `climate_{run_date}.parquet`.
+
+**Outputs:** 
+* Eval Climate Data - `eval/data/hrrr/climate_{run_date}.parquet`
+
+### Use Trained Model to Predict SWE
+Run the `model_predict_eval.ipynb` notebook.
+
+This notebook collates the data sources pulled in the previous steps, creates relevant features for the model and finally uses the previously trained models for SWE prediction.
+
+**Outputs:** 
+* Submission File - `eval/submissions/submission_{run_date}.csv`
