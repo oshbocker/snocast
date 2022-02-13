@@ -50,7 +50,10 @@ drive.mount('/content/drive')
 │   │   ├── ground_measures       <- Weekly Ground Measurments from SNOTEL and CDEC
 │   │   ├── hrrr                  <- NOAA HRRR Climate data
 │   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
-│   │   └── static                <- Data sources that don't have a time element
+│   │   ├── static                <- Data sources that don't have a time element
+│   │   ├── grid_cells.geojson
+│   │   ├── ground_measures_metadata.csv
+│   │   └── submission_format.csv
 │   ├──  models                   <- Trained model outputs
 │   └──  submissions              <- Submission outputs
 ```
