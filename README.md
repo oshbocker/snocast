@@ -56,6 +56,8 @@ drive.mount('/content/drive')
 │   │   └── submission_format.csv
 │   ├──  models                   <- Trained model outputs
 │   └──  submissions              <- Submission outputs
+├── requirements_train.txt
+└── requirements_eval.txt
 ```
 
 ## Train Instructions
@@ -141,7 +143,7 @@ We assume that the following files will be manually downloaded from the [DrivenD
 * `submission_format.csv`
 * `grid_cells.geojson`
 
-Place the follwing files in the `eval/data/ground_measures` directory.
+Place the following files in the `eval/data/ground_measures` directory.
 * `ground_measures_train_features.csv`
 * `ground_measures_test_features.csv`
 
