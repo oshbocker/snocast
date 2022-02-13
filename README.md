@@ -35,7 +35,7 @@ drive.mount('/content/drive')
 │   │         ├── labels_2020_2021.csv
 │   │         ├── submission_format.csv
 │   │         └── grid_cells.geojson
-│   └──  models                   <- Model outputs
+│   └── models                    <- Model outputs
 │
 ├── eval                          <- Code to acquire near real-time data and run predictions for snocast model
 │   ├── get_water_bodies_eval.ipynb
@@ -54,8 +54,12 @@ drive.mount('/content/drive')
 │   │   ├── grid_cells.geojson
 │   │   ├── ground_measures_metadata.csv
 │   │   └── submission_format.csv
-│   ├──  models                   <- Trained model outputs
-│   └──  submissions              <- Submission outputs
+│   ├── models                   <- Trained model outputs
+│   │   ├── std_scaler.bin       <- Trained Standard Scaler Transformer
+│   │   ├── xgb_all.txt          <- Trained Xgboost Model
+│   │   ├── lgb_all.txt          <- Trained LightGBM Model
+│   │   └── cb_all.txt           <- Trained Catboost Model
+│   └── submissions              <- Folder for submission outputs
 ├── requirements_train.txt
 └── requirements_eval.txt
 ```
