@@ -58,5 +58,6 @@ earthengine-api==0.1.297
 ## train_model notebook
 xgboost==0.90
 lightgbm==2.2.3
+catboost==1.0.4
 scikit-learn==1.0.2
 joblib==1.1.0
