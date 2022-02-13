@@ -65,7 +65,7 @@ In order to train the SWE prediction model a large quantity of historical data m
 * `submission_format.csv`
 * `grid_cells.geojson`
 
-With the base files - listed above - in place we set about acquiring the data necessary to train the SWE prediction model. For the sake of prediction the data are separated into two main categories, static and time-sensitive. Static data sources do not vary between prediction windows and represent geographical features of the grid cell. The time-varying data sources capture SWE features that will vary for a particular grid cell throughout the snow season. The three time-varying data sources are:
+With the base files - listed above - in place we use the notebooks with the `get_` prefix to acquire the remaining data necessary to train the SWE prediction model. For the sake of prediction the data are separated into two main categories, static and time-sensitive. Static data sources do not vary between prediction windows and represent geographical features of the grid cell. The time-varying data sources capture SWE features that will vary for a particular grid cell throughout the snow season. The three time-varying data sources are:
 * Modis
 * NOAA HRRR Climate Data
 * Ground Measurements 
