@@ -73,7 +73,7 @@ With the base files - listed above - in place we use the notebooks with the `get
 We will start by pulling the static data sources.
 Note: when training the data all the sources are technically static since we are looking at historical measurements.
 
-### Acquire Static Data for Train
+### Static Data for Train
 Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
 * `get_water_bodies_train_test.ipynb` (requires AWS access key)
   * **Outputs:** 
@@ -95,7 +95,7 @@ Run the following notebooks in the `train` directory in any particular order. So
     * `data/static/train_elevation_grads.parquet`
     * `data/static/test_elevation_grads.parquet`
 
-### Acquire Modis Data for Train
+### Modis Data for Train
 Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). Since this notebook pulls data for each date in the train, test, and gm datasets, and the 15 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
 
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/1091020/153730313-43d3a41e-8374-464a-9a58-90328d5c595c.png">
@@ -111,7 +111,7 @@ Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Go
   * `train/data/modis/modis_terra_test.parquet`
   * `train/data/modis/modis_aqua_test.parquet`
 
-### Acquire NOAA HRRR Climate Data for Train
+### NOAA HRRR Climate Data for Train
 Run the `get_climate_all.ipynb` notebook. Since this notebook pulls data for each date in the train, test, and gm datasets, and the 3 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the HRRR data storage locations will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
 
 **Outputs:** 
