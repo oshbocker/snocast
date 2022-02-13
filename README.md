@@ -76,19 +76,61 @@ Note: when training the data all the sources are technically static since we are
 ### Acquire Static Data for Train
 Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
 * `get_water_bodies_train_test.ipynb` (requires AWS access key)
+  * **Outputs:** 
+    * `data/static/train_water.parquet`
+    * `data/static/test_water.parquet`
 * `get_lccs_train_test.ipynb` (requires AWS access key)
+  * **Outputs:** 
+    * `data/static/train_lccs.parquet`
+    * `data/static/test_lccs.parquet`
 * `get_lccs_gm.ipynb` (requires AWS access key)
+  * **Outputs:** 
+    * `data/static/train_gm.parquet`
 * `get_elevation_train_test.ipynb`
+  * **Outputs:** 
+    * `data/static/train_elevation.parquet`
+    * `data/static/test_elevation.parquet`
 * `get_elevation_gradient_all.ipynb`
+  * **Outputs:** 
+    * `data/static/train_elevation_grads.parquet`
+    * `data/static/test_elevation_grads.parquet`
 
 ### Acquire Modis Data for Train
 Run the `get_modis_all.ipynb` notebook. This notebook will require access to [Google Earth Engine](https://developers.google.com/earth-engine). Since this notebook pulls data for each date in the train, test, and gm datasets, and the 15 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the Google Earth Engine API will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
+
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/1091020/153730313-43d3a41e-8374-464a-9a58-90328d5c595c.png">
+
+**Outputs:** 
+* Ground Measure Modis Data
+  * `train/data/modis/modis_terra_gm.parquet`
+  * `train/data/modis/modis_aqua_gm.parquet`
+* Train Modis Data
+  * `train/data/modis/modis_terra_train.parquet`
+  * `train/data/modis/modis_aqua_train.parquet`
+* Test Modis Data
+  * `train/data/modis/modis_terra_test.parquet`
+  * `train/data/modis/modis_aqua_test.parquet`
 
 ### Acquire NOAA HRRR Climate Data for Train
 Run the `get_climate_all.ipynb` notebook. Since this notebook pulls data for each date in the train, test, and gm datasets, and the 3 days prior to each date, this notebook takes a very long time to run. Occassionally an error on the Colab Server or with the HRRR data storage locations will cause the program to quit. It is recommended to run the Colab notebook with Background Execution enabled and a High-RAM runtime.
 
+**Outputs:** 
+* Ground Measure Climate Data - `train/data/hrrr/gm_climate.parquet`
+* Train Climate Data - `train/data/hrrr/train_climate.parquet`
+* Test Climate Data - `test/data/hrrr/test_climate.parquet`
+
 ### Train the Model on the Acquired Data
+Run the `train_model.ipynb` notebook. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+
+This notebook will collate the data sources pulled in the previous steps, create relevant features for the model and finally train the model for SWE prediction.
+
+**Outputs:** 
+* Standard Scaler fit on the train data - `eval/models/std_scaler.bin`
+  * Used to ensure that data scaling is similar when the model is run for prediction.
+* XGBoost Model fit on the train data - `eval/models/xgb_all.txt`
+  * Used as part of prediction ensemble.
+* LGB Model fit on train data - `eval/models/lgb_all.txt`
+  * Used as part of prediction ensemble. 
 
 ## Prediction (Eval) Instructions
 First, run the `get_ground_measures_eval.ipynb` notebook which will pull the latest `ground_measures_features.csv` file from the `drivendata-public-assets` AWS S3 bucket and store it in the `eval/data/ground_measures` directory.
