@@ -24,7 +24,7 @@ drive.mount('/content/drive')
 │   ├── get_climate_all.ipynb
 │   ├── train_model.ipynb
 │   │
-│   ├── data                      <- Scripts to download or generate data
+│   ├── data                      <- Data used to train model
 │   │    ├── hrrr                 <- NOAA HRRR Climate data
 │   │    ├── modis                <- Modis Terra and Aqua snow cover data outputs
 │   │    └── static               <- Data sources that don't have a time element
@@ -37,7 +37,7 @@ drive.mount('/content/drive')
 │   │         └── grid_cells.geojson
 │   └── models                    <- Model outputs
 │
-├── eval                          <- Code to acquire near real-time data and run predictions for snocast model
+├── eval                          <- Data used to predict with model
 │   ├── get_water_bodies_eval.ipynb
 │   ├── get_elevation_eval.ipynb
 │   ├── get_lccs_eval.ipynb
