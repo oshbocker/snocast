@@ -145,7 +145,7 @@ The static data sources are used mostly as is. These features include:
 * `south_elev_grad` - The gradient of Southern exposure captured in the elevation data.
 * `east_elev_grad` - The gradient of Eastern exposure captured in the elevation data.
 * `water` - The percentage of the grid cell that is occupied by a water body.
-* `lccs_0`, `lccs_1`, `lccs_2` - The three most frequent land cover categories for the grid cell, in order of most frequent.
+* `lccs_0`, `lccs_1`, `lccs_2` - The three most frequent [land cover categories](http://maps.elie.ucl.ac.be/CCI/viewer/download/ESACCI-LC-QuickUserGuide-LC-Maps_v2-0-7.pdf) for the grid cell, in order of most frequent.
 
 **Time-Varying Features**
 Rolling averages for the Modis data (Terra and Aqua) is compiled with a 5-day and 15-day window from the SWE measurement date, creating the following features:
