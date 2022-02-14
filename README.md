@@ -92,7 +92,7 @@ Run the following notebooks in the `train` directory in any particular order. So
   * **Outputs:** 
     * `train/data/static/train_lccs.parquet`
     * `train/data/static/test_lccs.parquet`
-* `get_lccs_gm.ipynb` (requires AWS access key)
+* `get_lccs_gm.ipynb` (Assumes LCCS data was pulled in get_lccs_train_test.ipynb)
   * **Outputs:** 
     * `train/data/static/train_gm.parquet`
 * `get_elevation_train_test.ipynb`
