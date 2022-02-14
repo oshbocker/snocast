@@ -238,9 +238,9 @@ Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_d
 * Eval Climate Data - `eval/data/hrrr/climate_{run_date}.parquet`
 
 ### Use Trained Model to Predict SWE
-Run the `model_predict_eval.ipynb` notebook.
+Run the `model_predict_eval.ipynb` notebook. Make sure the `run_date` variable is assigned to the current date for submitting predictions.
 
-This notebook collates the data sources pulled in the previous steps, creates relevant features for the model and finally uses the previously trained models for SWE prediction.
+This notebook collates the data sources pulled in the previous steps, creates relevant features (as described above in the Train Model section) and finally uses the previously trained models for SWE prediction.
 
 **Outputs:** 
 * Submission File - `eval/submissions/submission_{run_date}.csv`
