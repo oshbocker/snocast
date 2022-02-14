@@ -55,7 +55,7 @@ netCDF4==1.5.8
 ## get_modis notebooks
 earthengine-api==0.1.297
 
-## train_model notebook
+## train_model and model_predict_eval notebooks
 xgboost==0.90
 lightgbm==2.2.3
 catboost==1.0.4
