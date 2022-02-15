@@ -36,7 +36,7 @@ drive.mount('/content/drive')
 │             ├── submission_format.csv
 │             └── grid_cells.geojson
 │
-├── eval                          <- Data used to predict with model
+├── eval                          <- Code to acquire data for prediction on trained models
 │   ├── get_water_bodies_eval.ipynb
 │   ├── get_elevation_eval.ipynb
 │   ├── get_lccs_eval.ipynb
@@ -47,7 +47,7 @@ drive.mount('/content/drive')
 │   ├── get_climate_eval.ipynb
 │   ├── snocast_model_predict.ipynb
 │   │
-│   ├── data                      <- Scripts to download or generate data
+│   ├── data                      <- Data used to predict with model
 │   │   ├── ground_measures       <- Weekly Ground Measurments from SNOTEL and CDEC
 │   │   ├── hrrr                  <- NOAA HRRR Climate data
 │   │   ├── modis                 <- Modis Terra and Aqua snow cover data outputs
@@ -241,7 +241,7 @@ Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_d
 ### Use Trained Model to Predict SWE
 Run the `model_predict_eval.ipynb` notebook. Make sure the `run_date` variable is assigned to the current date for submitting predictions.
 
-This notebook collates the data sources pulled in the previous steps, creates relevant features (as described above in the Train Model section) and finally uses the previously trained models for SWE prediction.
+This notebook collates the data sources pulled in the previous steps, creates relevant features (as described above in the Train Model section) and finally uses the previously trained and frozen models for SWE prediction.
 
 **Outputs:** 
 * Submission File - `eval/submissions/submission_{run_date}.csv`
