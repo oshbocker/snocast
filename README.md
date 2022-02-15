@@ -43,6 +43,8 @@ drive.mount('/content/drive')
 │   ├── get_lccs_eval.ipynb
 │   ├── get_ground_measures_eval.ipynb
 │   ├── get_modis_eval.ipynb
+│   ├── get_modis_eval_parallel.ipynb
+│   ├── modis_parallel.py
 │   ├── get_climate_eval.ipynb
 │   ├── snocast_model_predict.ipynb
 │   │
