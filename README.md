@@ -126,7 +126,7 @@ Run the `get_climate_all.ipynb` notebook. Since this notebook pulls data for eac
 **Outputs:** 
 * Ground Measure Climate Data - `train/data/hrrr/gm_climate.parquet`
 * Train Climate Data - `train/data/hrrr/train_climate.parquet`
-* Test Climate Data - `test/data/hrrr/test_climate.parquet`
+* Test Climate Data - `train/data/hrrr/test_climate.parquet`
 
 ### Train the Model on the Acquired Data
 Run the `train_model.ipynb` notebook.
