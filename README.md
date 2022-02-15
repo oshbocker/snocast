@@ -1,7 +1,7 @@
 # Snocast
 This repository contains code to download data and train a model to predict snow water equivalent (SWE) values for 1 km^2 grids in the Western United States. It also contains code to use the trained model to make near real-time predictions for SWE.
 
-This code is designed to run using Google Colab with Google Drive as a backend for storing data. The Google Colab notebooks in this repo assume that the directory structure below stems from a root of `/content/drive/MyDrive/snocast` and files are accessed from a Google Colab notebook after the google drive has been mounted.
+This code is designed to run using Google Colab with Google Drive as a backend for storing data. The Google Colab notebooks in this repo assume that the directory structure below stems from a root of `/content/drive/MyDrive/snocast` and files are accessed from a Google Colab notebook after the Google Drive has been mounted.
 
 ```python
 from google.colab import drive
@@ -242,6 +242,8 @@ Next, open the `get_climate_eval.ipynb` notebook. Make sure to change the `run_d
 Run the `model_predict_eval.ipynb` notebook. Make sure the `run_date` variable is assigned to the current date for submitting predictions.
 
 This notebook collates the data sources pulled in the previous steps, creates relevant features (as described above in the Train Model section) and finally uses the previously trained and frozen models for SWE prediction.
+
+To calculate the `neighbor_relative_swe` field, a StandardScalar is fit on the latitude and longitude of the weekly supplied ground measures and then applied to both the ground measures and test grid cells to be used in a nearest neighbor search. A [KDTree](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KDTree.html) is built on the weekly supplied ground measures to facilitate nearest neighbor lookup for the scaled latitude and longitude from the grid cells. The 15 nearest neighbors are used to calculate the `neighbor_relative_swe` field, in a similar way as when the models were trained.
 
 **Outputs:** 
 * Submission File - `eval/submissions/submission_{run_date}.csv`
