@@ -24,18 +24,17 @@ drive.mount('/content/drive')
 │   ├── get_climate_all.ipynb
 │   ├── train_model.ipynb
 │   │
-│   ├── data                      <- Data used to train model
-│   │    ├── hrrr                 <- NOAA HRRR Climate data
-│   │    ├── modis                <- Modis Terra and Aqua snow cover data outputs
-│   │    └── static               <- Data sources that don't have a time element
-│   │         ├── ground_measures_train_features.csv
-│   │         ├── ground_measures_test_features.csv
-│   │         ├── ground_measures_metadata.csv
-│   │         ├── train_labels.csv
-│   │         ├── labels_2020_2021.csv
-│   │         ├── submission_format.csv
-│   │         └── grid_cells.geojson
-│   └── models                    <- Model outputs
+│   └── data                      <- Data used to train model
+│        ├── hrrr                 <- NOAA HRRR Climate data
+│        ├── modis                <- Modis Terra and Aqua snow cover data outputs
+│        └── static               <- Data sources that don't have a time element
+│             ├── ground_measures_train_features.csv
+│             ├── ground_measures_test_features.csv
+│             ├── ground_measures_metadata.csv
+│             ├── train_labels.csv
+│             ├── labels_2020_2021.csv
+│             ├── submission_format.csv
+│             └── grid_cells.geojson
 │
 ├── eval                          <- Data used to predict with model
 │   ├── get_water_bodies_eval.ipynb
