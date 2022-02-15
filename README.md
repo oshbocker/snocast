@@ -83,7 +83,7 @@ With the base files - listed above - in place we use the notebooks with the `get
 We will start by pulling the static data sources.
 
 ### Static Data for Train
-Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
+Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret to pull down files from AWS S3, noted below.
 * `get_water_bodies_train_test.ipynb` (requires AWS access key)
   * **Outputs:** 
     * `train/data/static/train_water.parquet`
