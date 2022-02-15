@@ -136,8 +136,8 @@ This notebook will collate the data sources pulled in the previous steps, create
 #### Data Transformation
 The notebook pulls in all of the data acquired in the previous steps for ground measures (gm), train, and test data. Features are created from the data sources for use in the models.
 
-**Static Features**
-The static data sources are used mostly as is. These features include:
+**Static Features** - 
+The static data sources are used mostly as is to create features. These features include:
 * `latitude`
 * `longitude`
 * `elevation_m` - Mean elevation for the grid or ground measure in Meters.
@@ -147,7 +147,7 @@ The static data sources are used mostly as is. These features include:
 * `water` - The percentage of the grid cell that is occupied by a water body.
 * `lccs_0`, `lccs_1`, `lccs_2` - The three most frequent [land cover categories](http://maps.elie.ucl.ac.be/CCI/viewer/download/ESACCI-LC-QuickUserGuide-LC-Maps_v2-0-7.pdf) for the grid cell, in order of most frequent.
 
-**Time-Varying Features**
+**Time-Varying Features** - 
 Rolling averages for the Modis data (Terra and Aqua) is compiled with a 5-day and 15-day window from the SWE measurement date, creating the following features:
 * `NDSI_Snow_Cover_Terra_5_day`
 * `NDSI_Snow_Cover_Aqua_5_day`
