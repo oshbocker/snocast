@@ -81,7 +81,6 @@ With the base files - listed above - in place we use the notebooks with the `get
 * Ground Measurements 
 
 We will start by pulling the static data sources.
-Note: when training the data all the sources are technically static since we are looking at historical measurements.
 
 ### Static Data for Train
 Run the following notebooks in the `train` directory in any particular order. Some of the notebooks will require an AWS access key and secret, noted below.
